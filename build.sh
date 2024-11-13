@@ -14,8 +14,11 @@ source poky/oe-init-build-env
 CONFLINES=(
     'MACHINE ??= "raspberrypi3"'
     'TARGET_ARCH = "arm"'
+    'KERNEL_MODULES:append = " i2c-dev "'
+    'KERNEL_MODULE_AUTOLOAD:rpi += "i2c-dev"'
+    'ENABLE_I2C = "1"'
     'IMAGE_INSTALL:append = " python3 python3-pip python3-setuptools python3-paho-mqtt "'
-    'IMAGE_INSTALL:append = " mosquitto  "'
+    'IMAGE_INSTALL:append = " mosquitto i2c-tools kernel-modules  "'
 )
 
 # Append settings to local.conf if they don't already exist
