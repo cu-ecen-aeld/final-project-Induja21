@@ -14,6 +14,7 @@ source poky/oe-init-build-env
 CONFLINES=(
     'MACHINE ??= "raspberrypi3"'
     'TARGET_ARCH = "arm"'
+    'ENABLE_UART = "1"'
     'KERNEL_MODULES:append = " i2c-dev "'
     'KERNEL_MODULE_AUTOLOAD:rpi += "i2c-dev"'
     'ENABLE_I2C = "1"'
