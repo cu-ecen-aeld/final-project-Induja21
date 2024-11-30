@@ -1,0 +1,3 @@
+# Custom configurations
+dtparam=i2c_arm=on
+
