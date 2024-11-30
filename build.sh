@@ -14,12 +14,18 @@ source poky/oe-init-build-env
 CONFLINES=(
     'MACHINE ??= "raspberrypi3"'
     'TARGET_ARCH = "arm"'
+    'DISTRO_FEATURES:append = " wifi systemd "'
+    'VIRTUAL-RUNTIME_init_manager = "systemd"'
     'ENABLE_UART = "1"'
     'KERNEL_MODULES:append = " i2c-dev "'
     'KERNEL_MODULE_AUTOLOAD:rpi += "i2c-dev"'
     'ENABLE_I2C = "1"'
-    'IMAGE_INSTALL:append = " python3 python3-pip python3-setuptools python3-paho-mqtt "'
-    'IMAGE_INSTALL:append = " mosquitto i2c-tools kernel-modules  "'
+    'ENABLE_WIFI = "1"'
+    'IMAGE_INSTALL:append = " python3 python3-pip python3-setuptools python3-paho-mqtt python3-smbus "'
+    'IMAGE_INSTALL:append = " mosquitto i2c-tools kernel-modules net-tools wpa-supplicant dnsmasq hostapd avahi-daemon iptables linux-firmware-bcm43430 apt "'
+    'LICENSE_FLAGS_ACCEPTED = "synaptics-killswitch"'
+    'SYSTEMD_AUTO_ENABLE_pn-networkmanager = "true"'
+    'SYSTEMD_AUTO_ENABLE_pn-dhcpcd = "true"'
 )
 
 # Append settings to local.conf if they don't already exist
@@ -33,6 +39,7 @@ BBLAYERS_ADD=(
     '../meta-openembedded/meta-oe'
     '../meta-openembedded/meta-python'
     '../meta-openembedded/meta-networking'
+    '../meta-openembedded/meta-custom'
 )
 
 # Add each layer with bitbake-layers if not already present
@@ -49,5 +56,5 @@ done
 
 # Exit on error and start the build
 set -e
-bitbake core-image-minimal
+bitbake core-image-base
 
