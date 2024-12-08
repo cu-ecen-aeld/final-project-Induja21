@@ -15,8 +15,8 @@ do_install() {
 
     install -D ${S}/mqtt-data-acquistion/publisher.py ${D}${bindir}/publisher
     install -D ${S}/mqtt-data-acquistion/subscriber.py ${D}${bindir}/subscriber
-    install -D ${S}/mqtt-data-acquistion/bmp180sensor.py ${D}${bindir}/bmp180sensor
-    install -D ${S}/mqtt-data-acquistion/lcd_display.py ${D}${bindir}/lcd_display
+    install -D ${S}/bmp180sensor/bmp180sensor.py ${D}${bindir}/bmp180sensor
+    install -D ${S}/lcd_interface/lcd_display.py ${D}${bindir}/lcd_display
 }
 
 FILES:${PN} = "${bindir}"
