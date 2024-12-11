@@ -12,6 +12,10 @@ SRCREV = "d78a4bc82eb44fcf5c72ec34846137e344e00094"
 S = "${WORKDIR}/git/rust-examples/mqtt-subscriber"
 CARGO_SRC_DIR = ""
 PV:append = ".AUTOINC+4bec6f9a3d"
+DEPENDS += "openssl"
+EXTRA_OECMAKE += "-DOPENSSL_ROOT_DIR=${STAGING_DIR_TARGET}/usr"
+EXTRA_OECARGO += "OPENSSL_DIR=${STAGING_DIR_TARGET}/usr"
+
 #RUSTFLAGS += "-Z namespaced-features"
 # please note if you have entries that do not begin with crate://
 # you must change them to how that package can be fetched
